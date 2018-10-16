@@ -4,7 +4,15 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script>
+		$(document).ready(function(){ 
+		$('#slider').slider({
+				range: true
+			});
+	});
+	</script>
 </head>
+
 <body>
 <div class="container">
 	<div class="row">
@@ -16,7 +24,9 @@
 					  <div class="form-group">
 					    <label for="outside" class="col-sm-2 control-label">outside(px.)</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="outside" placeholder="Outside">
+					      <div id="slider_container">
+					      	<input id="slider" type="range" min="0" max="200" step="5" value="50" />
+						  </div>
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -100,8 +110,11 @@
 	<br><br><br>
 	<div class="row">
 		<div class="text-center">
-			<div class="col-lg-6" id="circle">
-				Circle	
+			<div class="col-lg-6">
+				<canvas id="circle" width="500" height="300" style="border: 1px solid grey;">
+					
+				</canvas>
+				
 			</div>
 		</div>
 		<div class="text-center">
@@ -118,7 +131,41 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script>
+	  
+     	/*
+     	$('#circle').click(function(){
+	 		draw();
+	 		return false;
+	 	
+		});
+	 
+	 function draw()
+			  {
+			  	
+				var canvas = document.getElementById('circle');
+				if (canvas.getContext)
+				{
+					var ctx = canvas.getContext('2d'); 
+					var X = canvas.width / 2;
+					var Y = canvas.height / 2;
+					var width = $('#outside'). val();
+					var R = width * 2;
+					ctx.beginPath();
+					ctx.arc(X, Y, R, 0, 2 * Math.PI, false);
+					ctx.lineWidth = 3;
+					ctx.strokeStyle = '#FF0000';
+					ctx.stroke();
+				
 
+				/*
+				var width = $('#outside'). val();
+				alert(width);
+				
+				}
+			}
+			*/
+
+			
 </script>
 </body>
 </html>
