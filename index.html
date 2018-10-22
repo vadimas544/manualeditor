@@ -10,8 +10,8 @@
 	border: 15px solid #000;
    background: #fff;
    border-radius: 50%;
-   height: 500px;
-   width: 500px;
+   height: 400px;
+   width: 400px;
    position: relative;
    /* 
     Child elements with absolute positioning will be 
@@ -19,22 +19,32 @@
    */
  }
  #inner-circle {
-   position: absolute;
-   background: #000;
-   border-radius: 50%;
-   height: 50px;
-   width: 50px;
-   /*
-    Put top edge and left edge in the center
-   */
-   top: 50%;
-   left: 50%;
-   margin: -25px 0px 0px -25px;
+  	position: absolute;
+    background: #000;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    top: 50%;
+    left: 50%;
+    margin: -15px 0px 0px -15px;
    /* 
     Offset the position correctly with
     minus half of the width and minus half of the height 
    */
  }
+ #range_outside,#range_inside{
+border-radius:10px;
+width:45px;
+padding-top:10px; padding-bottom:10px;
+background-image: -webkit-linear-gradient(top, #cccccc, #3399ff);
+background-image: -o-linear-gradient(top, #cccccc, #3399ff);
+background-image: -moz-linear-gradient(top, #cccccc, #3399ff);
+text-align:center;
+color:#ffffff;
+font-weight:bold; font-size:large;
+margin-left:10px;
+margin-top:10px;
+}
 
 }
 </style>
@@ -59,16 +69,19 @@
 					  <div class="form-group">
 					    <label for="outside" class="col-sm-2 control-label">outside(px.)</label>
 					    <div class="col-sm-10">
-					      <div id="slider_container">
-					      	<input id="slider" type="range" min="0" max="200" step="5" value="50" />
+					      <div id="slider">
+					      	<input id="slider_outside" type="range" min="10" max="100" step="5" value="10" />
 						  </div>
-						  <div id="range">50</div>
+						  <div id="range_outside">10</div>
 					    </div>
 					  </div>
 					  <div class="form-group">
 					    <label for="inside" class="col-sm-2 control-label">inside(px.)</label>
 					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="inside" placeholder="Inside">
+					      <div id="slider">
+					      	<input id="slider_inside" type="range" min="20" max="50" step="1" value="20" />
+						  </div>
+						  <div id="range_inside">30</div>
 					    </div>
 					  </div>
 					  <div class="form-group">
@@ -146,12 +159,14 @@
 			<div class="row">
 				<div class="text-center">
 					<h3>Your circle</h3>
-					<br>
-					<div id="range">50</div>
-						<br><br>
-						<div id="outer-circle">
-						  <div id="inner-circle">
-						  </div>
+					<br><br><br>
+						<div class="text-center">
+							<div id="canvas">
+								<div id="outer-circle">
+								  <div id="inner-circle">
+								  </div>
+								</div>
+							</div>
 						</div>
 				</div>
 			</div>
@@ -170,18 +185,37 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script>
-	  
-     	/*
-     	$('#circle').click(function(){
-	 		draw();
-	 		return false;
+	  $( document ).ready(function() {
+     	
+		$("#slider_outside").change(function() {
+	 		var slide_amount = $('#slider_outside'). val();
+
+			$("#range_outside").html(slide_amount);
+			$("#outer-circle").css({'border':slide_amount+"px"+" "+"solid"});
 	 	
 		});
+		$("#slider_inside").change(function() {
+	 		var slide_amount = $('#slider_inside'). val();
+	 		var width =parseInt($('#inner-circle'). css('width'));
+	 		//var height = $('#inner-circle'). css('height');
+	 		var radius = width / 2;
+
+	 		//alert(radius);
+
+			$("#range_inside").html(slide_amount);
+			$("#inner-circle").css({'width':slide_amount+"px", 'height':slide_amount+"px"});
+	 	
+		});
+	});
+	 		//return false;
+/*
 	 
 	 function draw()
 			  {
-			  	
-				var canvas = document.getElementById('circle');
+			  	var slide_amount = $('#slider'). val();
+
+				$("#range").html(slide_amount);
+				var canvas = document.getElementById('canvas');
 				if (canvas.getContext)
 				{
 					var ctx = canvas.getContext('2d'); 
@@ -194,7 +228,7 @@
 					ctx.lineWidth = 3;
 					ctx.strokeStyle = '#FF0000';
 					ctx.stroke();
-				
+				}
 
 				/*
 				var width = $('#outside'). val();
@@ -205,12 +239,19 @@
 			
 			$( document ).ready(function() {
 					$("#slider").change(function() {
-						var slide_amount = this.value;
+						//alert('Hello');
+						
+						var slide_amount = $('#slider'). val();
+
 						$("#range").html(slide_amount);
-						$("#image").attr({'width':slide_amount+"%", 'height':slide_amount+"%"})
-				});
-			});
-			*/
+						var circle = $("#outer-circle");
+						circle.width = slide_amount;
+						
+						//$("#outer-circle").attr({'width':slide_amount+"%", 'height':slide_amount+"%"})
+					
+			}
+		});
+	*/
 </script>
 </body>
 </html>
