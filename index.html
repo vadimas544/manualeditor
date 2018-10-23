@@ -3,6 +3,7 @@
 <head>
 	<title></title>
 	<link rel="stylesheet"  href="css/bootstrap.min.css">
+	<link rel="stylesheet"  href="css/jquery-ui.css">
 	<style>
  #outer-circle {
  	margin: 0 auto;
@@ -75,6 +76,21 @@ margin-top:10px;
 	});
 	*/
 	</script>
+	<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
 </head>
 
 <body>
@@ -182,7 +198,8 @@ margin-top:10px;
 					<br><br><br>
 						<div class="text-center">
 							<div id="canvas">
-								<div id="outer-circle">
+								<div id="outer-circle" ondrop="drop(event)" ondragover="allowDrop(event)">
+
 								  <div id="inner-circle">
 								  </div>
 								</div>
@@ -201,7 +218,7 @@ margin-top:10px;
 					<h3>Rects</h3>
 					<br><br><br>
 					<div id="canvas_rect">
-						<div id="rectangle"></div>
+						<div id="rectangle" draggable="true" ondragstart="drag(event)" id="drag1"></div>
 					</div>
 				</div>
 				<div class="row">
@@ -222,6 +239,7 @@ margin-top:10px;
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script>
 	  $( document ).ready(function() {
      	
@@ -317,5 +335,6 @@ margin-top:10px;
 		});
 	*/
 </script>
+
 </body>
 </html>

@@ -1,58 +1,75 @@
+<!DOCTYPE html>
 <html>
-
-<style>
-	 #outer-circle {
-	margin-left: 200px;
-	border: 15px solid;
-   background: #fff;
-   border-radius: 50%;
-   height: 500px;
-   width: 500px;
-   //position: relative;
-   /* 
-    Child elements with absolute positioning will be 
-    positioned relative to this div 
-   
- }
- #inner-circle {
-   position: absolute;
-   background: #000;
-   border-radius: 50%;
-   height: 50px;
-   width: 50px;
-   
-    Put top edge and left edge in the center
-   
-   top: 50%;
-   left: 50%;
-   margin: -25px 0px 0px -25px;
-   /* 
-    Offset the position correctly with
-    minus half of the width and minus half of the height 
-   */
- }
-
-}
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	$( document ).ready(function() {
-		$("#slider").change(function() {
-	 		var slide_amount = $('#slider'). val();
-
-			$("#range").html(slide_amount);
-			$("#outer-circle").css({'border':slide_amount+"px"+" "+"solid"});
-	 	
-		});
-	});
-
-</script>
-<div>
-	<div id="slider_container">
-		<input id="slider" type="range" min="0" max="200" step="5" value="50" />
-	</div>
- <div id="range">50</div>
-</div>
-<div id="outer-circle">
-</div>
+<head>
+    <title></title>
+    <link rel="stylesheet"  href="css/bootstrap.min.css">
+    <link rel="stylesheet"  href="css/jquery-ui.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(init);
+        function init(){
+            var diagram = [];
+            $("#rect").draggable({
+               helper: 'clone'
+               //revert: "invalid"
+            }); 
+            $("#circle").droppable({
+                drop: function(event, ui){
+                      //alert("droped"); 
+                      var node = {
+                        _id: (new Date).getTime()
+                      };
+                      diagram.push(node);
+                      console.log(diagram); 
+                }
+            });    
+        }
+    </script>
+    <style type="text/css">
+        #circle {
+            margin: 0 auto;
+            border: 15px solid #000;
+           background: #fff;
+           border-radius: 50%;
+           height: 400px;
+           width: 400px;
+           z-index: 1;
+         }
+        #rect {
+          display: inline-block;
+          margin: 20px auto;
+          width: 200px;
+          height: 100px;
+          background: red;
+          white-space: nowrap;
+          z-index: 2;
+          
+    }
+    .blocks{
+        border: 1px solid #000;
+        height: 400px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 blocks">
+               <div class="text-center">
+                   <div id="circle">
+                       
+                   </div>
+               </div> 
+            </div>
+            <div class="col-lg-6 blocks">
+                <div class="text-center">
+                   <div id="rect">
+                       
+                   </div>
+               </div> 
+            </div>
+        </div>
+    </div>
+</body>
 </html>
