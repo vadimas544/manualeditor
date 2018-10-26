@@ -4,26 +4,42 @@
     <title></title>
     <link rel="stylesheet"  href="css/bootstrap.min.css">
     <link rel="stylesheet"  href="css/jquery-ui.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script>
         $(init);
         function init(){
             var diagram = [];
             $("#rect").draggable({
-               helper: 'clone'
-               //revert: "invalid"
-            }); 
+              /*
+               helper: function() {
+                return $(this).clone().appendTo('#circle').css({
+                'zIndex': 5
+            });
+            },
+            */
+            helper: 'original',
+             /* function() {
+              return $(this).clone().appendTo( "#circle" );
+            },
+            */
+            cursor: 'move',
+            tolerance: 'fit'
+            //revert: true
+        }); 
             $("#circle").droppable({
                 drop: function(event, ui){
-                      //alert("droped"); 
+                      /*alert("droped"); 
                       var node = {
                         _id: (new Date).getTime()
                       };
                       diagram.push(node);
-                      console.log(diagram); 
+                      console.log(diagram);
+                      */
+                      $('#rect').append(ui.draggable);
+                       //alert("droped");
                 }
-            });    
+            });   
         }
     </script>
     <style type="text/css">
@@ -34,16 +50,19 @@
            border-radius: 50%;
            height: 400px;
            width: 400px;
-           z-index: 1;
+           z-index: 2;
+
          }
+        
         #rect {
+          /*position: absolute;*/
           display: inline-block;
           margin: 20px auto;
           width: 200px;
           height: 100px;
           background: red;
           white-space: nowrap;
-          z-index: 2;
+          z-index: 1;
           
     }
     .blocks{
