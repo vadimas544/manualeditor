@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<!--<link rel="stylesheet" href="css/gridstack.css">-->
+	<link rel="stylesheet" href="css/new.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>
+	$( document ).ready(function() {
+		$(".new-rect").draggable({
+			helper: function() {
+                return $(this).clone().appendTo('.outer-circle').css({
+                'zIndex': 5
+            });
+            }
+
+		});
+		$("#circle").droppable({
+                drop: function(event, ui){
+                      /*alert("droped"); 
+                      var node = {
+                        _id: (new Date).getTime()
+                      };
+                      diagram.push(node);
+                      console.log(diagram);
+                      */
+                      $('.outer-circle').append(ui.draggable);
+                       //alert("droped");
+                }
+            });
+	});
+	
+</script>
+</head>
+<body>
+	<div class="container clones">
+		<div class="rect">
+			<div class="new-rect" draggable=true></div>
+			<div class="new-rect"></div>
+			<div class="new-rect"></div>
+			<div class="new-rect"></div>
+			<div class="new-rect"></div>
+		</div>
+		<div class="circle">
+			<div class="outer-circle">
+				
+			</div>
+		</div>	
+	</div>
+	
+
+</body>
+</html>

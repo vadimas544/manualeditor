@@ -190,40 +190,42 @@ function drop(ev) {
 			</div>	
 		</div>
 	<br><br><br>
-	<div class="row">
-		<div class="col-lg-6">
-			<div class="row">
-				<div class="text-center">
-					<h3>Your circle</h3>
-					<br><br><br>
-						<div class="text-center">
-							<div id="canvas">
-								<div id="outer-circle" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-								  <div id="inner-circle">
-								  </div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</div>
-			<div class="row">
-				<div id="zerolevel_line">
-				</div>
-			</div>
-		</div>
-		<div class="text-center">
+	<div class="objects">
+		<div class="row">
 			<div class="col-lg-6">
 				<div class="row">
-					<h3>Rects</h3>
-					<br><br><br>
-					<div id="canvas_rect">
-						<div id="rectangle" draggable="true" ondragstart="drag(event)" id="drag1"></div>
+					<div class="text-center">
+						<h3>Your circle</h3>
+						<br><br><br>
+							<div class="text-center">
+								<div id="canvas">
+									<div id="outer-circle" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+									  <div id="inner-circle">
+									  </div>
+									</div>
+								</div>
+							</div>
 					</div>
 				</div>
 				<div class="row">
-					<h3>Squares</h3><br>
-					<div id="squares">
+					<div id="zerolevel_line">
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<div class="col-lg-6">
+					<div class="row">
+						<h3>Rects</h3>
+						<br><br><br>
+						<div id="canvas_rect">
+							<div id="rectangle" draggable="true" ondragstart="drag(event)" id="drag1"></div>
+						</div>
+					</div>
+					<div class="row">
+						<h3>Squares</h3><br>
+						<div id="squares">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -240,6 +242,7 @@ function drop(ev) {
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="js/jquery.shapeshift.js"></script>
 <script>
 	  $( document ).ready(function() {
      	
@@ -288,6 +291,7 @@ function drop(ev) {
 			$("#zerolevel_line").css({'margin-top':"-"+slide_amount+"px"});
 	 	
 		});
+		$(".objects").shapeshift();
 	});
 	 		//return false;
 /*
